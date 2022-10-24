@@ -13,15 +13,16 @@ namespace RevisedPartsEntry
 {
     public partial class PartsEntry : Form
     {
-      
-
-        public PartsEntry()
+        Part part;
+        BindingList<Part> itemList = new BindingList<Part>();
+        BindingSource bindingSource;
+         public PartsEntry()
         {
             InitializeComponent();
         }
 
 
-        /// <summary>
+         /// <summary>
         /// Validates entries adds part to the datagrid
         /// </summary>
         /// <param name="sender"></param>
@@ -47,6 +48,7 @@ namespace RevisedPartsEntry
                 MessageBox.Show("Please correct entry errors.", "Entry Errors",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         /// <summary>
@@ -66,6 +68,7 @@ namespace RevisedPartsEntry
             dailyUsageTextBox.Clear();
             reorderPointTextBox.Clear();
             partNumberTextBox.Focus();
+
         }
 
         /// <summary>
@@ -122,7 +125,7 @@ namespace RevisedPartsEntry
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void itemClassTextBox_Validating(object sender, CancelEventArgs e)
+        private void itemClassComboBox_Validating(object sender, CancelEventArgs e)
         {
             string itemClass = itemClassTextBox.Text;
             if (itemClass.Length == -1)
@@ -235,6 +238,50 @@ namespace RevisedPartsEntry
         private void PartsEntry_Load(object sender, EventArgs e)
         {
             this.AutoValidate = AutoValidate.Disable;
+            itemClassComboBox.DataSource = Enum.GetValues(typeof(ItemClass));
+
+            try
+            {
+                // Give our retailItemList as the data source
+                bindingSource = new BindingSource(part, null);
+
+                // Now that we our source created we can assign that to our datagrid 
+                dataGridView.DataSource = bindingSource;
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Read error");
+            }
+
+        }
+
+        /// <summary>
+        /// Display row should display selected row in data view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void displayRowButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.CurrentCell.RowIndex >= 0 && dataGridView.CurrentCell.RowIndex < itemList.Count)
+            {
+                Part part = itemList[dataGridView.CurrentCell.RowIndex];
+
+                MessageBox.Show(part.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Delete the row 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void deleteRowButton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure to delete?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            int rowIndex = dataGridView.CurrentCell.RowIndex;
+            dataGridView.Rows.RemoveAt(rowIndex);
+
         }
     }
 }

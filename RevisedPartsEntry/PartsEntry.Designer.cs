@@ -35,7 +35,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.partNumberTextBox = new System.Windows.Forms.TextBox();
@@ -46,12 +45,18 @@
             this.totalInventoryCostTextBox = new System.Windows.Forms.TextBox();
             this.leadTimeTextBox = new System.Windows.Forms.TextBox();
             this.dailyUsageTextBox = new System.Windows.Forms.TextBox();
-            this.reorderPointTextBox = new System.Windows.Forms.TextBox();
             this.submitButton = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.itemClassComboBox = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.reorderPointTextBox = new System.Windows.Forms.TextBox();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.displayRowButton = new System.Windows.Forms.Button();
+            this.deleteRowButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -84,7 +89,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(48, 311);
+            this.label4.Location = new System.Drawing.Point(755, 148);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(204, 25);
             this.label4.TabIndex = 5;
@@ -93,7 +98,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(48, 252);
+            this.label5.Location = new System.Drawing.Point(755, 31);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(105, 25);
             this.label5.TabIndex = 4;
@@ -108,19 +113,10 @@
             this.label6.TabIndex = 3;
             this.label6.Text = "Units On Hand";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(48, 475);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(144, 25);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Reorder Point";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(48, 416);
+            this.label8.Location = new System.Drawing.Point(755, 85);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(128, 25);
             this.label8.TabIndex = 7;
@@ -128,10 +124,9 @@
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(48, 358);
+            this.label9.Location = new System.Drawing.Point(755, 145);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(191, 25);
+            this.label9.Size = new System.Drawing.Size(204, 31);
             this.label9.TabIndex = 6;
             this.label9.Text = "Lead Time In Days";
             // 
@@ -147,7 +142,7 @@
             // 
             this.partDescriptionTextBox.Location = new System.Drawing.Point(283, 85);
             this.partDescriptionTextBox.Name = "partDescriptionTextBox";
-            this.partDescriptionTextBox.Size = new System.Drawing.Size(218, 31);
+            this.partDescriptionTextBox.Size = new System.Drawing.Size(418, 31);
             this.partDescriptionTextBox.TabIndex = 2;
             this.partDescriptionTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.partDescriptionTextBox_Validating);
             // 
@@ -157,7 +152,6 @@
             this.itemClassTextBox.Name = "itemClassTextBox";
             this.itemClassTextBox.Size = new System.Drawing.Size(218, 31);
             this.itemClassTextBox.TabIndex = 3;
-            this.itemClassTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.itemClassTextBox_Validating);
             // 
             // unitsOnHandTextBox
             // 
@@ -169,7 +163,7 @@
             // 
             // unitPriceTextBox
             // 
-            this.unitPriceTextBox.Location = new System.Drawing.Point(283, 246);
+            this.unitPriceTextBox.Location = new System.Drawing.Point(990, 25);
             this.unitPriceTextBox.Name = "unitPriceTextBox";
             this.unitPriceTextBox.Size = new System.Drawing.Size(218, 31);
             this.unitPriceTextBox.TabIndex = 5;
@@ -177,14 +171,14 @@
             // 
             // totalInventoryCostTextBox
             // 
-            this.totalInventoryCostTextBox.Location = new System.Drawing.Point(283, 305);
+            this.totalInventoryCostTextBox.Location = new System.Drawing.Point(990, 142);
             this.totalInventoryCostTextBox.Name = "totalInventoryCostTextBox";
             this.totalInventoryCostTextBox.Size = new System.Drawing.Size(218, 31);
             this.totalInventoryCostTextBox.TabIndex = 6;
             // 
             // leadTimeTextBox
             // 
-            this.leadTimeTextBox.Location = new System.Drawing.Point(283, 355);
+            this.leadTimeTextBox.Location = new System.Drawing.Point(990, 142);
             this.leadTimeTextBox.Name = "leadTimeTextBox";
             this.leadTimeTextBox.Size = new System.Drawing.Size(218, 31);
             this.leadTimeTextBox.TabIndex = 7;
@@ -192,22 +186,15 @@
             // 
             // dailyUsageTextBox
             // 
-            this.dailyUsageTextBox.Location = new System.Drawing.Point(283, 410);
+            this.dailyUsageTextBox.Location = new System.Drawing.Point(990, 79);
             this.dailyUsageTextBox.Name = "dailyUsageTextBox";
             this.dailyUsageTextBox.Size = new System.Drawing.Size(218, 31);
             this.dailyUsageTextBox.TabIndex = 8;
             this.dailyUsageTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.dailyUsageTextBox_Validating);
             // 
-            // reorderPointTextBox
-            // 
-            this.reorderPointTextBox.Location = new System.Drawing.Point(283, 469);
-            this.reorderPointTextBox.Name = "reorderPointTextBox";
-            this.reorderPointTextBox.Size = new System.Drawing.Size(218, 31);
-            this.reorderPointTextBox.TabIndex = 9;
-            // 
             // submitButton
             // 
-            this.submitButton.Location = new System.Drawing.Point(115, 525);
+            this.submitButton.Location = new System.Drawing.Point(775, 194);
             this.submitButton.Name = "submitButton";
             this.submitButton.Size = new System.Drawing.Size(124, 40);
             this.submitButton.TabIndex = 10;
@@ -217,7 +204,7 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(270, 525);
+            this.clearButton.Location = new System.Drawing.Point(930, 194);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(124, 40);
             this.clearButton.TabIndex = 11;
@@ -227,7 +214,7 @@
             // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(427, 525);
+            this.exitButton.Location = new System.Drawing.Point(1087, 194);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(124, 40);
             this.exitButton.TabIndex = 12;
@@ -239,11 +226,71 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // itemClassComboBox
+            // 
+            this.itemClassComboBox.FormattingEnabled = true;
+            this.itemClassComboBox.Location = new System.Drawing.Point(283, 137);
+            this.itemClassComboBox.Name = "itemClassComboBox";
+            this.itemClassComboBox.Size = new System.Drawing.Size(218, 33);
+            this.itemClassComboBox.TabIndex = 13;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(755, 145);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(144, 25);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Reorder Point";
+            // 
+            // reorderPointTextBox
+            // 
+            this.reorderPointTextBox.Location = new System.Drawing.Point(990, 139);
+            this.reorderPointTextBox.Name = "reorderPointTextBox";
+            this.reorderPointTextBox.Size = new System.Drawing.Size(218, 31);
+            this.reorderPointTextBox.TabIndex = 9;
+            // 
+            // dataGridView
+            // 
+            this.dataGridView.AllowUserToAddRows = false;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Location = new System.Drawing.Point(53, 262);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.ReadOnly = true;
+            this.dataGridView.RowHeadersWidth = 82;
+            this.dataGridView.RowTemplate.Height = 33;
+            this.dataGridView.Size = new System.Drawing.Size(933, 297);
+            this.dataGridView.TabIndex = 14;
+            // 
+            // displayRowButton
+            // 
+            this.displayRowButton.Location = new System.Drawing.Point(1018, 358);
+            this.displayRowButton.Name = "displayRowButton";
+            this.displayRowButton.Size = new System.Drawing.Size(224, 40);
+            this.displayRowButton.TabIndex = 15;
+            this.displayRowButton.Text = "Display Row";
+            this.displayRowButton.UseVisualStyleBackColor = true;
+            this.displayRowButton.Click += new System.EventHandler(this.displayRowButton_Click);
+            // 
+            // deleteRowButton
+            // 
+            this.deleteRowButton.Location = new System.Drawing.Point(1018, 427);
+            this.deleteRowButton.Name = "deleteRowButton";
+            this.deleteRowButton.Size = new System.Drawing.Size(224, 40);
+            this.deleteRowButton.TabIndex = 16;
+            this.deleteRowButton.Text = "Delete Row";
+            this.deleteRowButton.UseVisualStyleBackColor = true;
+            this.deleteRowButton.Click += new System.EventHandler(this.deleteRowButton_Click);
+            // 
             // PartsEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(668, 586);
+            this.ClientSize = new System.Drawing.Size(1254, 586);
+            this.Controls.Add(this.deleteRowButton);
+            this.Controls.Add(this.displayRowButton);
+            this.Controls.Add(this.dataGridView);
+            this.Controls.Add(this.itemClassComboBox);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.submitButton);
@@ -269,6 +316,7 @@
             this.Text = "Parts Entry";
             this.Load += new System.EventHandler(this.PartsEntry_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,7 +330,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox partNumberTextBox;
@@ -293,11 +340,16 @@
         private System.Windows.Forms.TextBox totalInventoryCostTextBox;
         private System.Windows.Forms.TextBox leadTimeTextBox;
         private System.Windows.Forms.TextBox dailyUsageTextBox;
-        private System.Windows.Forms.TextBox reorderPointTextBox;
         private System.Windows.Forms.Button submitButton;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.ComboBox itemClassComboBox;
+        private System.Windows.Forms.TextBox reorderPointTextBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button deleteRowButton;
+        private System.Windows.Forms.Button displayRowButton;
+        private System.Windows.Forms.DataGridView dataGridView;
     }
 }
 
